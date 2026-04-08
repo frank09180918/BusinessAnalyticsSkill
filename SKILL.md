@@ -4,6 +4,21 @@ version: 1.0.0
 description: "哈佛商业分析框架：用哈佛商学院的9大核心技能模型，对任何业务问题进行结构化分析。输出包含：问题定性（4种分析类型）、数据洞察、可视化建议、行动建议。"
 ---
 
+## 配置（本地专用，勿提交 GitHub）
+
+| 配置项 | 值 |
+|--------|----|
+| **API Key** | 通过环境变量 `DAMIAPI_KEY` 设置，或在本地 SKILL.md 中填入 |
+| **Base URL** | `https://damiapi.cn` |
+| **分析模型** | `claude-sonnet-4-6` |
+| **海报模型** | `gemini-3.1-flash-image-preview`（NanoBanana2） |
+
+调用 Python SDK 前设置环境变量：
+
+```bash
+export DAMIAPI_KEY=sk-your-key-here
+```
+
 # 哈佛商业分析框架 (Harvard Business Analytics Framework)
 
 > 基于哈佛大学"Every Business Analytics Professional Needs"课程体系蒸馏

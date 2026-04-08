@@ -60,8 +60,15 @@ def _build_user_message(inp: AnalysisInput) -> str:
     parts = [f"Business question: {inp.question}"]
     if inp.context:
         parts.append(f"Context: {inp.context}")
-    if inp.data_summary:
+
+    # Excel data takes priority over manual data_summary
+    if inp.excel_path:
+        from .excel_reader import read_excel, summary_to_text
+        excel_summary = read_excel(inp.excel_path, sheets=inp.excel_sheets)
+        parts.append(f"Excel data provided:\n{summary_to_text(excel_summary)}")
+    elif inp.data_summary:
         parts.append(f"Available data: {inp.data_summary}")
+
     if inp.audience:
         parts.append(f"Target audience: {inp.audience}")
     return "\n\n".join(parts)

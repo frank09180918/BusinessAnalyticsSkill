@@ -12,6 +12,7 @@ from .validator import validate_analysis_input, validate_poster_input, Validatio
 from .analyzer import run_analysis
 from .reporter import render_report, save_report
 from .poster import generate_poster, generate_poster_from_report
+from .excel_reader import read_excel, summary_to_text, ExcelSummary, SheetSummary
 
 __all__ = [
     "AnalysisInput", "AnalysisReport", "AnalyticsType",

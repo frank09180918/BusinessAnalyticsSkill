@@ -1,0 +1,14 @@
+# Local output files
+output/
+*.log
+
+# Do not push local config with API keys
+# SKILL.md and examples/example_analysis.py contain keys for local use only
+# Uncomment below if you want to protect them:
+# SKILL.md
+# examples/example_analysis.py
+
+# Python
+__pycache__/
+*.pyc
+.env

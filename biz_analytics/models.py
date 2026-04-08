@@ -62,6 +62,16 @@ class AnalysisInput(BaseModel):
         description="Desired output format",
     )
 
+    excel_path: Optional[str] = Field(
+        None,
+        description="Path to an Excel file (.xlsx/.xls). All sheets will be read and "
+                    "summarized automatically into data_summary.",
+    )
+    excel_sheets: Optional[list[str]] = Field(
+        None,
+        description="Specific sheet names to read. None = read all sheets.",
+    )
+
     @field_validator("question")
     @classmethod
     def question_must_be_meaningful(cls, v: str) -> str:
@@ -74,6 +84,19 @@ class AnalysisInput(BaseModel):
     @classmethod
     def strip_optional_strings(cls, v):
         return v.strip() if isinstance(v, str) else v
+
+    @field_validator("excel_path", mode="before")
+    @classmethod
+    def validate_excel_path(cls, v):
+        if v is None:
+            return v
+        from pathlib import Path
+        p = Path(str(v))
+        if not p.exists():
+            raise ValueError(f"Excel file not found: {v}")
+        if p.suffix.lower() not in {".xlsx", ".xls", ".xlsm", ".xlsb"}:
+            raise ValueError(f"Unsupported file type: {p.suffix}. Use .xlsx or .xls.")
+        return str(p)
 
 
 class PosterInput(BaseModel):

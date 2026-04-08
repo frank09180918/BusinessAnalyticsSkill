@@ -69,6 +69,15 @@ def build_parser() -> argparse.ArgumentParser:
         "--poster-ratio", default="16:9", choices=["16:9", "4:3", "1:1"],
         help="Poster aspect ratio (default: 16:9)",
     )
+    p.add_argument(
+        "--excel", default=None, metavar="FILE",
+        help="Path to Excel file (.xlsx/.xls). All sheets are read and injected into analysis.",
+    )
+    p.add_argument(
+        "--sheets", nargs="+", default=None, metavar="SHEET",
+        help="Specific sheet names to read (default: all sheets). "
+             "Example: --sheets Sales Q1 Q2",
+    )
     return p
 
 
@@ -86,6 +95,8 @@ def main(argv: list[str] | None = None) -> int:
             "data_summary":  args.data,
             "audience":      args.audience,
             "output_format": args.output_format,
+            "excel_path":    args.excel,
+            "excel_sheets":  args.sheets,
         })
     except ValueError as exc:
         print(f"Input validation failed:\n{exc}", file=sys.stderr)

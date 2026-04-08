@@ -1,3 +1,5 @@
+![Harvard Business Analytics Framework](poster.jpeg)
+
 # biz-analytics — Harvard Business Analytics Skill for Claude Code
 
 A Claude Code skill that structures any business problem using Harvard's **9 core skills** framework for analytics professionals.
